@@ -14,7 +14,6 @@ def actualizar_precio():
         data = ticker.history(period="1d")
         if not data.empty:
             latest_price = data["Close"].iloc[-1]
-        time.sleep(1)  # Actualiza cada 10 segundos
 
 # Iniciar la actualización en un hilo separado para no bloquear el servidor
 threading.Thread(target=actualizar_precio, daemon=True).start()
