@@ -14,7 +14,7 @@ def actualizar_precio():
         data = ticker.history(period="1d")
         if not data.empty:
             latest_price = data["Close"].iloc[-1]
-        time.sleep(60)  # Actualiza cada 60 segundos
+        time.sleep(5)  # Actualiza cada 10 segundos
 
 # Iniciar la actualización en un hilo separado para no bloquear el servidor
 threading.Thread(target=actualizar_precio, daemon=True).start()
@@ -22,5 +22,5 @@ threading.Thread(target=actualizar_precio, daemon=True).start()
 @app.get("/precio")
 def obtener_precio():
     if latest_price is not None:
-        return {"precio_mxn_usd": latest_price}
+        return {"MXN=X": latest_price}
     return {"error": "No se pudo obtener el precio"}
