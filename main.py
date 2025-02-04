@@ -14,6 +14,8 @@ def actualizar_precio():
         data = ticker.history(period="1d")
         if not data.empty:
             latest_price = data["Close"].iloc[-1]
+        time.sleep(10)  # Actualiza cada 60 segundos
+
 
 # Iniciar la actualización en un hilo separado para no bloquear el servidor
 threading.Thread(target=actualizar_precio, daemon=True).start()
@@ -22,6 +24,6 @@ threading.Thread(target=actualizar_precio, daemon=True).start()
 def obtener_precio():
     if latest_price is not None:
         # Agregar 0.05 al precio final antes de devolverlo
-        adjusted_price = latest_price + 0.050
+        adjusted_price = latest_price + 0.05
         return {"MXN=X": adjusted_price}
     return {"error": "No se pudo obtener el precio"}
