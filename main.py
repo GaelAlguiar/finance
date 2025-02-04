@@ -22,6 +22,6 @@ threading.Thread(target=actualizar_precio, daemon=True).start()
 def obtener_precio():
     if latest_price is not None:
         # Agregar 0.05 al precio final antes de devolverlo
-        adjusted_price = latest_price + 0.05
+        adjusted_price = latest_price + 0.050
         return {"MXN=X": adjusted_price}
     return {"error": "No se pudo obtener el precio"}
